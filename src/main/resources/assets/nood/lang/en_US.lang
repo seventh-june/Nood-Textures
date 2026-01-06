@@ -1,0 +1,36 @@
+itemGroup.nood=Nood
+
+item.nood.quartz_ingot.name=Quartz Ingot
+item.nood.quartz_helmet.name=Quartz Helmet
+item.nood.quartz_chestplate.name=Quartz Chestplate
+item.nood.quartz_leggings.name=Quartz Leggings
+item.nood.quartz_boots.name=Quartz Boots
+item.nood.quartz_axe.name=Quartz Axe
+item.nood.quartz_hoe.name=Quartz Hoe
+item.nood.quartz_pickaxe.name=Quartz Pickaxe
+item.nood.quartz_shovel.name=Quartz Shovel
+item.nood.quartz_sword.name=Quartz Sword
+item.nood.ignis_fruit.name=Ignis Fruit
+item.nood.nether_bed.name=Nether Bed
+item.nood.blood_leaf.name=Bloodleaf
+item.nood.flesh_root.name=Fleshroot
+item.nood.marrow_berry.name=Marrowberry
+item.nood.blood_leaf_seeds.name=Bloodleaf Seeds
+item.nood.flesh_root_seeds.name=Fleshroot Seeds
+item.nood.marrow_berry_seeds.name=Marrowberry Seeds
+item.nood.glow_flower_seeds.name=Glow Flower Seeds
+
+tile.nood.nether_log.name=Nether Wood
+tile.nood.nether_leaves.name=Nether Leaves
+tile.nood.nether_planks.name=Nether Planks
+tile.nood.nether_sapling.name=Nether Sapling
+tile.nood.nether_bed.name=Nether Bed
+tile.nood.nether_garden.name=Nether Garden
+tile.nood.ignis_fruit.name=Ignis Fruit
+tile.nood.glow_flower.name=Glow Flower
+tile.nood.blood_leaf_crop.name=Blood Leaf Crop
+tile.nood.flesh_root_crop.name=Flesh Root Crop
+tile.nood.marrow_berry_crop.name=Marrow Berry Crop
+tile.nood.glow_flower_crop.name=Glow Flower Crop
+
+tile.bed.notHere=You may not sleep here

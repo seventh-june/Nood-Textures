@@ -10,25 +10,29 @@ import org.apache.commons.io.FileUtils;
 import cpw.mods.fml.common.Loader;
 
 public class NoodConfig {
-    
+
     private static final String CATEGORY_CROPS = "crops";
     private static final String CATEGORY_TREES = "fruit trees";
     private static final String CATEGORY_GARDENS = "gardens";
     private static final String CATEGORY_MISC_RECIPES = "miscellaneous recipes";
-    
+
+    // general
+    public static boolean enableNoodAI = true;
+    public static float aiRandomness = 0.1f;
+
     // crops
     public static int foodHungerRestore = 1;
     public static float foodSaturationModifier = 0.6f;
     public static boolean cropsDropSeeds = false;
     public static boolean rClickHarvestCrops = true;
     public static boolean rClickMatureCropsShowHearts = false;
-    
+
     // fruit trees
     public static boolean generateNetherTrees = true;
     public static int treeRarity = 15;
     public static boolean rClickHarvestFruits = true;
     public static boolean rClickMatureFruitsShowHearts = false;
-    
+
     // gardens
     public static boolean generateGardens = true;
     public static boolean gardenSpread = true;
@@ -41,27 +45,33 @@ public class NoodConfig {
     public static int glowFlowerSpreadRate = 100;
     public static int glowFlowerRarity = 4;
     public static boolean glowFlowersDropSeeds = false;
-    
+
     // miscellaneous recipes
     public static boolean enableCrop2SeedRecipes = true;
-    
+    public static boolean isArmorRepairable = true;
+    public static boolean areToolsRepairable = true;
+
     static void init(File configDir) {
         File fileHarvestTheNether = new File(configDir, "harvestthenether.cfg");
         File fileNood = new File(configDir, "nood.cfg");
-        
-        if(Loader.isModLoaded("harvestthenether")) {
-            Nood.LOGGER.warn("Pam's Harvest the Nether is loaded! Consider removing it, its content is fully contained within Nood.");
-        } else if(fileHarvestTheNether.exists() && !fileNood.exists()) {
+
+        if (Loader.isModLoaded("harvestthenether")) {
+            Nood.LOGGER.warn(
+                "Pam's Harvest the Nether is loaded! Consider removing it, its content is fully contained within Nood.");
+        } else if (fileHarvestTheNether.exists() && !fileNood.exists()) {
             try {
                 FileUtils.moveFile(fileHarvestTheNether, fileNood);
             } catch (IOException e) {
                 Nood.LOGGER.error("An error occured while converting Pam's Harvest the Nether's config file.", e);
             }
         }
-        
+
         Configuration cfg = new Configuration(fileNood, Tags.VERSION);
-        
+
         // spotless:off
+        enableNoodAI = cfg.getBoolean("enableNoodAI", Configuration.CATEGORY_GENERAL, enableNoodAI, "(CLIENT ONLY) If the \"/noodai\" command should be enabled");
+        aiRandomness = cfg.getFloat("aiRandomness", Configuration.CATEGORY_GENERAL, aiRandomness, 0.0f, 1.0f, "(CLIENT ONLY) What percentage of responses to the same prompt in \"/noodai text <prompt>\" should return a random response");
+
         foodHungerRestore = cfg.getInt("cropfoodRestore", CATEGORY_CROPS, foodHungerRestore, 0, 20, "How many hunger points crop drops should restore");
         foodSaturationModifier = cfg.getFloat("cropsaturationRestore", CATEGORY_CROPS, foodSaturationModifier, 0.0f, 10.0f, "Saturation modifer of all crop drops");
         cropsDropSeeds = cfg.getBoolean("cropsdropSeeds", CATEGORY_CROPS, cropsDropSeeds, "If crops should drop seeds instead of some of the food");
@@ -86,9 +96,11 @@ public class NoodConfig {
         glowFlowersDropSeeds = cfg.getBoolean("glowflowersdropSeeds", CATEGORY_GARDENS, glowFlowersDropSeeds, "If Glow Flower blocks should drop Glow Flower Seeds instead of itself");
 
         enableCrop2SeedRecipes = cfg.getBoolean("enablecroptoseedRecipe", CATEGORY_MISC_RECIPES, enableCrop2SeedRecipes, "If crop drops can be converted to seeds via shapeless crafting");
+        isArmorRepairable = cfg.getBoolean("isArmorRepairable", CATEGORY_MISC_RECIPES, isArmorRepairable, "If Quartz Armor can be repaired using Quartzite Ingots");
+        areToolsRepairable = cfg.getBoolean("areToolsRepairable", CATEGORY_MISC_RECIPES, areToolsRepairable, "If Quartz Tools / Weapons can be repaired using Quartzite Ingots");
         // spotless:on
-        
-        if(cfg.hasChanged()) {
+
+        if (cfg.hasChanged()) {
             cfg.save();
         }
     }
