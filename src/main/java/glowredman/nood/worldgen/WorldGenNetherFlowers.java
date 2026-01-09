@@ -19,22 +19,19 @@ public class WorldGenNetherFlowers extends WorldGenerator {
 
     @Override
     public boolean generate(World world, Random rng, int x, int y, int z) {
-        boolean success = false;
         for (int i = 0; i < 8; i++) {
-            int newX = x + rng.nextInt(15) - 7;
+            int newX = x + rng.nextInt(15) + 1;
             int newY = y + rng.nextInt(7) - 3;
-            int newZ = z + rng.nextInt(15) - 7;
+            int newZ = z + rng.nextInt(15) + 1;
 
             if (newY < 1 || newY > 254) {
                 continue;
             }
 
-            if (world.getBlock(newX, newY, newZ)
-                .canPlaceBlockAt(world, newX, newY, newZ)) {
+            if (world.isAirBlock(newX, newY, newZ) && this.flower.canPlaceBlockAt(world, newX, newY, newZ)) {
                 this.setBlockAndNotifyAdequately(world, newX, newY, newZ, this.flower, 0);
-                success = true;
             }
         }
-        return success;
+        return true;
     }
 }

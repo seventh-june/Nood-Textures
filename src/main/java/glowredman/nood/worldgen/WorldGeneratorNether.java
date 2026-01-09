@@ -26,9 +26,9 @@ public class WorldGeneratorNether implements IWorldGenerator {
         IChunkProvider chunkProvider) {
         if (world.provider.dimensionId == -1) {
             for (int i = 0; i < this.rarity; i++) {
-                int x = chunkX + random.nextInt(16);
+                int x = (chunkX << 4) + random.nextInt(16);
                 int y = random.nextInt(128);
-                int z = chunkZ + random.nextInt(16);
+                int z = (chunkZ << 4) + random.nextInt(16);
                 this.generator.generate(world, random, x, y, z);
             }
         }
