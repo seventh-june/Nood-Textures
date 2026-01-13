@@ -44,6 +44,7 @@ public class Nood {
         NoodItems.init();
         if (event.getSide()
             .isClient()) {
+            NoodAI.init();
             ClientCommandHandler.instance.registerCommand(new CommandNoodAI());
         }
     }
