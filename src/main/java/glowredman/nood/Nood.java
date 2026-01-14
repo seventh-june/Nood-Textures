@@ -18,6 +18,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.GameRegistry.Type;
+import glowredman.nood.compat.MFRCompat;
 import glowredman.nood.compat.ThaumcraftCompat;
 import glowredman.nood.worldgen.WorldGenNetherFlowers;
 import glowredman.nood.worldgen.WorldGenNetherTree;
@@ -53,6 +54,9 @@ public class Nood {
     public void init(FMLInitializationEvent event) {
         if (Loader.isModLoaded("Thaumcraft")) {
             ThaumcraftCompat.init();
+        }
+        if (Loader.isModLoaded("MineFactoryReloaded")) {
+            MFRCompat.init();
         }
     }
 
