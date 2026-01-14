@@ -80,22 +80,27 @@ public class BlockIgnisFruit extends Block implements IGrowable {
     }
 
     @Override
-    public void onBlockClicked(World worldIn, int x, int y, int z, EntityPlayer player) {
-        if (!worldIn.isRemote && worldIn.getBlockMetadata(x, y, z) == 2) {
-            this.dropBlockAsItem(worldIn, x, y, z, 2, 0);
+    public void onBlockDestroyedByPlayer(World worldIn, int x, int y, int z, int meta) {
+        if (meta == 2) {
             worldIn.setBlock(x, y, z, this, 0, 2);
         }
     }
 
     @Override
     public void onNeighborBlockChange(World worldIn, int x, int y, int z, Block neighbor) {
-        if (worldIn.getBlock(x, y + 1, z) == NoodBlocks.blockNetherLeaves) {
-            return;
+        if (!this.canBlockStay(worldIn, x, y, z)) {
+            worldIn.func_147480_a(x, y, z, false); // MCP: breakBlock
         }
-        if (worldIn.getBlockMetadata(x, y, z) >= 2) {
-            this.dropBlockAsItem(worldIn, x, y, z, 2, 0);
-        }
-        worldIn.setBlockToAir(x, y, z);
+    }
+
+    @Override
+    public boolean canBlockStay(World worldIn, int x, int y, int z) {
+        return worldIn.getBlock(x, y + 1, z) == NoodBlocks.blockNetherLeaves;
+    }
+
+    @Override
+    public boolean canPlaceBlockAt(World worldIn, int x, int y, int z) {
+        return super.canPlaceBlockAt(worldIn, x, y, z) && this.canBlockStay(worldIn, x, y, z);
     }
 
     @Override
