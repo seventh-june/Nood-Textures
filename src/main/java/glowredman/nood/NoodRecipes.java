@@ -3,6 +3,7 @@ package glowredman.nood;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -19,7 +20,9 @@ public class NoodRecipes {
     }
 
     private static void addShapelessRecipes() {
-        GameRegistry.addShapelessRecipe(new ItemStack(NoodBlocks.blockNetherPlanks, 4), NoodBlocks.blockNetherLog);
+        GameRegistry.addShapelessRecipe(
+            new ItemStack(NoodBlocks.blockNetherPlanks, 4),
+            new ItemStack(NoodBlocks.blockNetherLog, 1, OreDictionary.WILDCARD_VALUE));
 
         GameRegistry.addShapelessRecipe(
             new ItemStack(Blocks.cobblestone, 9),
