@@ -133,6 +133,7 @@ public class NoodRecipes {
         GameRegistry.addSmelting(Items.quartz, new ItemStack(NoodItems.itemQuartzIngot), 0.2f);
         GameRegistry.addSmelting(NoodItems.itemWeevil, new ItemStack(NoodItems.itemCookedWeevil), 0.35f);
         GameRegistry.addSmelting(NoodItems.itemWeevilEgg, new ItemStack(NoodItems.itemScrambledWeevilEgg), 0.35f);
+        GameRegistry.addSmelting(NoodBlocks.blockNetherLog, new ItemStack(Items.coal, 1, 1), 0.15f);
     }
 
     private static void addSeedRecipes() {
